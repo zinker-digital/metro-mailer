@@ -6,6 +6,8 @@
   "scripts": {
     "start": "tsc && node dist/",
     "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "postinstall": "tsc && mv -i -v public dist/",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --check src",
