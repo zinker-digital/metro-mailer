@@ -11,6 +11,7 @@ import config from './config';
 import projectApi from './routes/project';
 import comunaseoApi from './routes/comunaseo';
 import modelApi from './routes/model';
+import postventaApi from './routes/postventa';
 
 const app = express();
 app.use(express.json());
@@ -24,6 +25,7 @@ app.get('/', (req: Request, res: Response) => {
 projectApi(app);
 comunaseoApi(app);
 modelApi(app);
+postventaApi(app);
 
 app.use(notFoundHandler);
 app.use(logErrors);
