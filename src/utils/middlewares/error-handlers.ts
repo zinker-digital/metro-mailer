@@ -17,7 +17,9 @@ function logErrors(
   res: Response,
   next: NextFunction
 ) {
-  console.log(err);
+  if (config.dev) {
+    console.log(err);
+  }
   next(err);
 }
 
@@ -40,6 +42,7 @@ function errorHandler(
   const {
     output: { statusCode, payload }
   } = err;
+
   res.status(statusCode);
   res.json(withErrorStack(payload, err.stack));
 }

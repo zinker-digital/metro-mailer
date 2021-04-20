@@ -2,27 +2,27 @@ import { Express, NextFunction, Request, Response, Router } from 'express';
 import boom from '@hapi/boom';
 
 import emailTransporter from '../email';
-import { RequestProjectType } from '../types';
+import { RequestProjectFloatType } from '../types';
 import { eventEmitter } from '../events';
 import { validationHandler } from '../utils/middlewares/validation-handler';
-import { projectSchema } from '../utils/schemas/project';
+import { projectFloatSchema } from '../utils/schemas/project-float';
 
-export default function projectApi(app: Express) {
+export default function projectFloatApi(app: Express) {
   const router = Router();
-  app.use('/api/v1/project', router);
+  app.use('/api/v1/project-float', router);
 
   router.post(
     '/',
-    validationHandler(projectSchema),
+    validationHandler(projectFloatSchema),
     async (req: Request, res: Response, next: NextFunction) => {
-      const body = req.body as RequestProjectType;
+      const body = req.body as RequestProjectFloatType;
       if (!body.projectName || !body.projectUFPrice) {
         return res.json(boom.notFound('Invalid request'));
       }
 
       try {
-        const mailer = await emailTransporter(body, 'project');
-        eventEmitter.emit('project', body);
+        const mailer = await emailTransporter(body, 'projectFloat');
+        eventEmitter.emit('projectFloat', body);
         return res.status(200).send(mailer);
       } catch (err) {
         next(err);

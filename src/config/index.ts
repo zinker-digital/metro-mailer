@@ -10,6 +10,7 @@ export default {
   smtpService: process.env.SMTP_SERVICE,
   emailAccount: process.env.EMAIL_ACCOUNT,
   emailPostventa: process.env.EMAIL_POSTVENTA,
+  emailComunaseo: process.env.EMAIL_COMUNASEO,
   ccOne: process.env.CC_ONE,
   ccTwo: process.env.CC_TWO
 };

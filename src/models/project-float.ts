@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface IProject extends Document {
+export interface IProjectFloat extends Document {
+  date?: Date;
   gleadMail: string;
-  date: Date;
   precioUF: string;
   sourceFirst: string;
   mediumFirst: string;
@@ -17,53 +17,66 @@ export interface IProject extends Document {
   mensajeForm: string;
 }
 
-const projectSchema = new Schema({
+const ProjectFloatSchema = new Schema({
   gleadMail: {
-    type: String
+    type: String,
+    require: true
   },
   date: {
     type: Date,
     default: new Date()
   },
   precioUF: {
-    type: String
+    type: String,
+    require: true
   },
   sourceFirst: {
-    type: String
+    type: String,
+    require: true
   },
   mediumFirst: {
-    type: String
+    type: String,
+    require: true
   },
   sourceCurrent: {
-    type: String
+    type: String,
+    require: true
   },
   mediumCurrent: {
-    type: String
+    type: String,
+    require: true
   },
   nombreProyecto: {
-    type: String
+    type: String,
+    require: true
   },
   mailContacto: {
-    type: String
+    type: String,
+    require: true
   },
   nombreForm: {
-    type: String
+    type: String,
+    require: true
   },
   emailForm: {
-    type: String
+    type: String,
+    require: true
   },
   telefonoForm: {
-    type: String
+    type: String,
+    require: true
   },
   rutForm: {
-    type: String
+    type: String,
+    require: true
   },
   mensajeForm: {
-    type: String
+    type: String,
+    require: true
   }
 });
 
-export const ProjectForm = mongoose.model<IProject>(
-  'ProjectForm',
-  projectSchema
+export const ProjectFloatForm = mongoose.model<IProjectFloat>(
+  'ProjectFloatForm',
+  ProjectFloatSchema
 );

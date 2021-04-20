@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import exphbs from 'express-handlebars';
+import compression from 'compression';
 
 import {
   logErrors,
@@ -12,17 +12,18 @@ import projectApi from './routes/project';
 import comunaseoApi from './routes/comunaseo';
 import modelApi from './routes/model';
 import postventaApi from './routes/postventa';
+import projectFloatApi from './routes/project-float';
 
 const app = express();
 app.use(express.json());
-app.engine('.hbs', exphbs({ extname: '.hbs' }));
-app.set('view engine', '.hbs');
+app.use(compression());
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('oopS!');
+app.get('/', (_req: Request, res: Response) => {
+  res.send('oops!');
 });
 
 projectApi(app);
+projectFloatApi(app);
 comunaseoApi(app);
 modelApi(app);
 postventaApi(app);
@@ -34,6 +35,6 @@ app.use(errorHandler);
 
 app.listen(config.port, () => {
   console.log(
-    `this application is listening at http://localhost:${config.port}`
+    `This application is listening at http://localhost:${config.port}`
   );
 });

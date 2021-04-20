@@ -1,70 +1,65 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface IModel extends Document {
-  gleadMail: string;
-  date: Date;
-  precioUF: string;
+export interface IPostventa extends Document {
+  date?: Date;
   sourceFirst: string;
   mediumFirst: string;
   sourceCurrent: string;
   mediumCurrent: string;
-  nombreProyecto: string;
-  nombrePlanta: string;
-  mailContacto: string;
   nombreForm: string;
   emailForm: string;
   telefonoForm: string;
-  rutForm: string;
+  comunaForm: string;
   mensajeForm: string;
 }
 
-const modelSchema = new Schema({
-  gleadMail: {
-    type: String
-  },
+const PostventaSchema = new Schema({
   date: {
     type: Date,
     default: new Date()
   },
-  precioUF: {
-    type: String
-  },
   sourceFirst: {
-    type: String
+    type: String,
+    require: true
   },
   mediumFirst: {
-    type: String
+    type: String,
+    require: true
   },
   sourceCurrent: {
-    type: String
+    type: String,
+    require: true
   },
   mediumCurrent: {
-    type: String
-  },
-  nombreProyecto: {
-    type: String
-  },
-  nombrePlanta: {
-    type: String
-  },
-  mailContacto: {
-    type: String
+    type: String,
+    require: true
   },
   nombreForm: {
-    type: String
+    type: String,
+    require: true
   },
   emailForm: {
-    type: String
+    type: String,
+    require: true
   },
   telefonoForm: {
-    type: String
+    type: String,
+    require: true
+  },
+  comunaForm: {
+    type: String,
+    require: true
   },
   rutForm: {
-    type: String
+    type: String,
+    require: true
   },
   mensajeForm: {
     type: String
   }
 });
 
-export const ModelForm = mongoose.model<IModel>('ModelForm', modelSchema);
+export const PostventaForm = mongoose.model<IPostventa>(
+  'PostventaForm',
+  PostventaSchema
+);

@@ -1,8 +1,7 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
 
-export interface IComuneSeo extends Document {
-  date: Date;
-  commune: string;
+export interface CommuneseoI extends Document {
+  date?: Date;
   sourceFirst: string;
   mediumFirst: string;
   sourceCurrent: string;
@@ -12,46 +11,57 @@ export interface IComuneSeo extends Document {
   telefonoForm: string;
   rutForm: string;
   mensajeForm: string;
+  commune: string;
 }
 
-const communeSeoSchema = new Schema({
+const CommuneseoSchema: Schema<CommuneseoI> = new Schema({
   date: {
     type: Date,
     default: new Date()
   },
   commune: {
-    type: String
+    type: String,
+    require: true
   },
   sourceFirst: {
-    type: String
+    type: String,
+    require: true
   },
   mediumFirst: {
-    type: String
+    type: String,
+    require: true
   },
   sourceCurrent: {
-    type: String
+    type: String,
+    require: true
   },
   mediumCurrent: {
-    type: String
+    type: String,
+    require: true
   },
   nombreForm: {
-    type: String
+    type: String,
+    require: true
   },
   emailForm: {
-    type: String
+    type: String,
+    require: true
   },
   telefonoForm: {
-    type: String
+    type: String,
+    require: true
   },
   rutForm: {
-    type: String
+    type: String,
+    require: true
   },
   mensajeForm: {
-    type: String
+    type: String,
+    require: true
   }
 });
 
-export const CommuneSeoForm = mongoose.model<IComuneSeo>(
+export const CommuneSeoForm = model<CommuneseoI>(
   'CommuneSeoForm',
-  communeSeoSchema
+  CommuneseoSchema
 );

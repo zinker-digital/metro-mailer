@@ -1,21 +1,23 @@
 import mongoose from 'mongoose';
 
-import { configDb } from '../config';
+import config, { configDb } from '../config';
 
 async function dbConnect() {
   if (mongoose.connection.readyState >= 1) {
     return;
   }
+
   return mongoose.connect(
-    configDb.uri || 'mongodb://localhost/test',
+    configDb.uri ? configDb.uri : 'mongodb://localhost/test',
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true
+      useUnifiedTopology: true
     },
-    () => {
-      console.log('connected');
+    (info) => {
+      if (config.dev) {
+        console.log(info);
+        console.log('connected');
+      }
     }
   );
 }
